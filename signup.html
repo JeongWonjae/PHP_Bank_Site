@@ -1,0 +1,40 @@
+<HTML>
+	<?php
+	if(isset($_SESSION['user_id']) AND isset($_SESSION['user_name']))
+	{
+		echo "<script>alert('Access Denied. Logout please.');</script>";
+		echo "<script>location.href='index.php'</script>";
+	}
+	?>
+	<TITLE>PHP Bank - Signup</TITLE>
+	<HEAD>
+		<li>
+		Menu : Sign up<br>
+		</li>
+	</HEAD>
+	<BODY>
+		<form action="./signup.php" method="post">	
+		<fieldset>
+			<legend>Signup Form</legend>
+			<p>
+				<label class="title" for="name">Name : </label>
+				<input type="text" name="name" id="name" size="12">
+				<label class="title" for="id">id : </label>
+				<input type="text" name="id" id="id" size="12">
+				<label class="title" for="alias">Alias : </label>
+				<input type="text" name="alias" id="alias" size="12">
+				<label class="title" for="pw">Password : </label>
+				<input type="password" name="pw" id="pw" size="12">
+				<label class="title" for="phone">Phone Number : (include '-')</label>
+				<input type="text" name="phone" id="phone" size="12" maxlength="13">
+				<span class="title">Did you confirm?</span>
+			</p>
+			<p>
+				<label><input type="radio" name="confirm" value="yes" />yes</label>
+				<label><input type="radio" name="confirm" value="no" />no</label>
+				<br /><input type="submit" value="Sign Up">
+			</p>	
+		</fieldset>
+	</form>
+	</BODY>
+</HTML>
