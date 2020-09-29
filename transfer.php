@@ -80,7 +80,16 @@
 				$stmt->bind_param('ss', $newAmount, $fromAcc);
 				$stmt->execute();
 
-				echo "<script>alert('Success deposit.');</script>";
+				//log
+				$date=date('Y-n-j');
+				$time=date('h:i:s');
+				$logWords="[LOG] Transfer ".$fromAcc." to ".$toAcc." for ".$amount;
+				$stmt=$conn->stmt_init();
+				$stmt=$conn->prepare("Insert into Deposit_Log values(?,?,?,?)");
+				$stmt->bind_param('ssss', $_SESSION['user_id'], $logWords, $date, $time);
+				$stmt->execute();
+				
+				echo "<script>alert('Success transfer.');</script>";
 				echo "<script>location.href='index.php?page=lookup'</script>";
 			}			
 		}

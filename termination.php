@@ -185,6 +185,16 @@
 				$stmt->execute();
 				
 			}
+			
+			//log
+			$date=date('Y-n-j');
+			$time=date('h:i:s');
+			$logWords="[LOG] Termination Account ".$accNum." by ".$_SESSION['user_id'];
+			$stmt=$conn->stmt_init();
+			$stmt=$conn->prepare("Insert into Deposit_Log values(?,?,?,?)");
+			$stmt->bind_param('ssss', $_SESSION['user_id'], $logWords, $date, $time);
+			$stmt->execute();
+			
 			echo "<script>alert('Success termination.');</script>";
 			echo "<script>location.href='index.php?page=lookup'</script>";
 		}			

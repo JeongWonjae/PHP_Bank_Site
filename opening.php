@@ -82,6 +82,15 @@
 	$result=$stmt->get_result();
 	$data=$result->fetch_assoc();
 
+	//log
+	$date=date('Y-n-j');
+	$time=date('h:i:s');
+	$logWords="[LOG] Opening Account ".$accNum." by ".$_SESSION['user_id'];
+	$stmt=$conn->stmt_init();
+	$stmt=$conn->prepare("Insert into Deposit_Log values(?,?,?,?)");
+	$stmt->bind_param('ssss', $_SESSION['user_id'], $logWords, $date, $time);
+	$stmt->execute();
+				
 	if($data['Name'])
 	{
 		echo "<script>alert('Success opening your account.');</script>";

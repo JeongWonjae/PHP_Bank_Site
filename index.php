@@ -3,20 +3,26 @@
 	<title>PHP Bank</title>
 	<link rel="stylesheet" type="text/css" href="style/index.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style>
+			body { font-family: Consolas, sans-serif; }
+	</style>
 </head>
 <body>
 	<?php session_start(); ?>
-	<img src="image/bank_main.jpg" alt="main" width="1200" height="300">
+	
+	<img src="image/bank_main.jpg" alt="main" width="1200" height="200">
+
 	<nav id="topMenu">
 		<ul>
-			<li><a class="menuLink" href="?page=index">Home</a></li>
+			<li><a class="menuLink" href="?page=index"><b>Home</b></a></li>
 			<li><a class="menuLink" href="?page=transfer">Transfer</a></li>
-			<li><a class="menuLink" href="?page=lookup">Lookup</a></li>
-			<li><a class="menuLink" href="?page=insurance">Insurance</a></li>
-			<li><a class="menuLink" href="?page=inquery">Inquery</a></li>
+			<li><a class="menuLink" href="?page=deposit">Deposit</a></li>
+			<li><a class="menuLink" href="?page=opening">Opening</a></li>
+			<li><a class="menuLink" href="?page=termination">Termination</a></li>
+			<li><a class="menuLink" href="?page=qna">QnA</a></li>
 		</ul>
 		<ul>
-			<?php 
+			<?php //세션이 존재한다면 로그아웃으로 표시, 존재하지 않는다면 로그인으로 표시
 			if(isset($_SESSION['user_id']) AND isset($_SESSION['user_name']))
 			{ 
 				echo "<li><a class='menuLink' href='?page=logout'>Logout</a></li>";
@@ -26,24 +32,21 @@
 			}
 			?>
 			<li><a class="menuLink" href="?page=signup">Sign up</a></li>
-			<li><a class="menuLink" href="?page=opening">Opening</a></li>
-			<li><a class="menuLink" href="?page=termination">Termination</a></li>
-			<li><a class="menuLink" href="?page=deposit">Deposit</a></li>
-		</ul>
-		<ul>
-			<li><a class="menuLink" href="?page=admin">Admin</a></li>
+			<li><a class="menuLink" href="?page=lookup">Lookup</a></li>
+			<li><a class="menuLink" href="?page=insurance">Insurance</a></li>
 			<li><a class="menuLink" href="?page=mypage">My page</a></li>
 		</ul>
 	</nav>
+	
 	<br><br><br><br><br><br>
 	
 	<div id="hellowords">
 		
 	<?php if(isset($_SESSION['user_id']) AND isset($_SESSION['user_name'])){ ?>
 	<?php echo "Hello! ".$_SESSION['user_name']; ?>	
-	<?php } ?>
+	<?php }?>
+	<br>
 	</div>
-	
 	
 	<nav id="content">
 		
@@ -88,9 +91,13 @@
 		if($_GET['page']=="mypage"){
 			include 'mypage.html';
 		}
+		if($_GET['page']=="qna"){
+			include 'board.html';
+		}
+		if($_GET['page']=="write"){
+			include 'board_write.html';
+		}
 		?>
 	</nav>
-	
-	
 </body>
 </html>
