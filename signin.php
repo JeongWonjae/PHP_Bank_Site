@@ -8,8 +8,8 @@
 	}
 
 	$id=$_POST['id'];
-	$pw=$_POST['pw'];
-	$pw=sha1($pw);
+	$chkPW=$_POST['pw'];
+	$chkPW=sha1($chkPW);
 	$conn = mysqli_connect( $host, $user, $pw, $dbName);
 
 	if(!$conn){
@@ -27,7 +27,7 @@
 	{
 		echo "<script>alert('ID does not exist or Wrong password.');</script>";
 		echo "<script>location.href='index.php?page=signin';</script>";
-	} else if($data['PW']!=$pw)
+	} else if($data['PW']!=$chkPW)
 	{
 		echo "<script>alert('ID does not exist or Wrong password.');</script>";
 		echo "<script>location.href='index.php?page=signin';</script>";

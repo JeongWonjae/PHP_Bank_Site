@@ -19,7 +19,7 @@
 	</HEAD>
 	<BODY>
 	<div class="description"># This menu used when you need to answer to admin.</div><br>
-	<input class="writeB" type=button value="Write" id="amount" size="12" onClick="location.href='index.php?page=write'"><br><br>
+	<input class="w_button" type=button value="Write" id="amount" size="12" onClick="location.href='index.php?page=write'"><br><br>
 	<table>
 		<thead>
 			<tr>
@@ -53,7 +53,7 @@
 			<tr>
 				<td class="no"><?php echo $row['No']?></td>
 				<?php 
-					$directPath="location.href='board_lookup.php?no=".$row['No']."'";
+					$directPath="location.href='index.php?page=board_lookup&no=".$row['No']."'";
 					echo "<td class='title' onClick=\"".$directPath."\">".$row['Title']."</td>"; 
 				?>
 				<!--<td class='title'><?php echo $row['Title']?></td>-->

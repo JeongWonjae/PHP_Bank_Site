@@ -1,6 +1,46 @@
-.writeB{
-	padding: 10px;
+.frame{
 }
+
+.chat input[type="text"]{
+	width: 100px;
+	float: left;
+}
+
+.chat_content input[type="text"]{
+	width: 833px;
+}
+
+.chat input[type="submit"]{
+	width: 50pt;
+	height: 20pt;
+	margin-top: 0px;
+	float: left;
+}
+
+.chat input[type="submit"]:hover{
+	border: 1px solid #006633;
+}
+
+div.downdesc{
+	float: right;
+	color: Lightgray;
+}
+
+.admin_table_member table{
+	text-align: center;
+	border: 1px solid #d6d6d6;
+	border-collapse: collapse;
+	width: 50%; 
+}
+
+.admin_table_member th:nth-child(2){ width: 70px; }
+.admin_table_member td:nth-child(1){ width: 70px; }
+.admin_table_member td:nth-child(2){ width: 70px; }
+.admin_table_member td:nth-child(3){ width: 70px; }
+.admin_table_member td:nth-child(4){ width: 70px; }
+.admin_table_member td:nth-child(5){ width: 80px; }
+.admin_table_member td:nth-child(6){ width: 80px; }
+.admin_table_member td:nth-child(7){ width: 80px; }
 
 table{
 	text-align: center;
@@ -25,12 +65,37 @@ td:nth-child(3){ width: 100px; }
 td:nth-child(4){ width: 100px; }
 td:nth-child(5){ width: 50px; }
 
+
 .checkmsg{
 	color: Red;
 }
 
 .checkmsg_success{
 	color: Blue;
+}
+
+.w_button{
+	width: 80pt;
+	height: 25pt;
+	border-radius: 3px;
+	margin-top: 5px;
+	float: center;
+}
+
+.w_button:hover{
+	border: 1px solid #006633;
+}
+
+.b_button{
+	width: 60pt;
+	height: 25pt;
+	border-radius: 3px;
+	margin-top: 5px;
+	float: right;
+}
+
+.b_button:hover{
+	border: 1px solid #006633;
 }
 
 .s_button input[type="submit"]{

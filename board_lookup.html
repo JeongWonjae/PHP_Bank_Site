@@ -1,0 +1,64 @@
+<HTML>
+	<?php
+	if(!isset($_SESSION['user_id']) OR !isset($_SESSION['user_name']))
+	{
+		echo "<script>alert('Access Denied. Signin please.');</script>";
+		echo "<script>location.href='index.php?page=signin'</script>";
+	}
+	?>
+	
+	<TITLE>PHP Bank - Board lookup</TITLE>
+	<HEAD>
+		<li>
+		Menu : Post Lookup<br>
+		</li>
+	</HEAD>
+	<BODY>
+	<div class="description"># This menu used when you see post which you want .</div>
+		
+		<fieldset>
+			<legend>Board Form</legend>
+				<?php
+					include 'config/database.php';
+					$conn = mysqli_connect( $host, $user, $pw, $dbName);
+
+					if(!$conn){
+						echo "<script>alert('DB Server Connect Fail');</script>";
+						echo "<script>locastion.href='index.php?page=inquery'</script>";
+					}
+					
+					$stmt=$conn->stmt_init();
+					$stmt=$conn->prepare("select * from board where No=?");
+					$stmt->bind_param('s', $_GET['no']);
+					$stmt->execute();
+					$result=$stmt->get_result();
+					while($data=$result->fetch_assoc())
+					{
+					
+				?>
+				<label class="title" for="title">No. </label>
+				<?php echo "<input type='text' name='no' id='no' size='12' value='".$data['No']."' readonly>"; ?>
+			
+				<label class="title" for="title">Title : </label>
+				<?php echo "<input type='text' name='title' id='title' size='12' value='".$data['Title']."' readonly>"; ?>
+			
+				<label class="title" for="author">Author : </label>
+				<?php echo "<input type='text' name='author' id='author' size='12' value='".$data['ID']."' readonly>"; ?>
+			
+				<label class="title" for="content">Content : </label>
+			 	<?php echo "<textarea cols='12' rows='10' name='content' id='content' readonly>".$data['Content']."</textarea>"; ?>	
+			
+				<label class="title" for="content">Date : </label>
+				<?php echo "<input type='text' name='date' id='date' size='12' value='".$data['Date']." ".$data['Time']."' readonly>"; ?>
+			
+				<label class="title" for="date">File_name : </label>
+				<?php $downpath="location.href='file_download.php?filename=".$data['File_name']."'" ?>
+				<?php echo "<input type='text' name='file' id='file' size='12' value='".$data['File_name']."' onClick=\"".$downpath."\" readonly>"; ?>
+				<div class='downdesc'>click to Download file.</div>
+				<br><br>
+				<p><input type='button' class='b_button' value='Back' onclick="location.href='index.php?page=qna'"></p>
+				<?php } ?>
+		</fieldset>
+	</BODY>
+</HTML>
+

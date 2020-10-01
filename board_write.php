@@ -46,6 +46,8 @@
 		}
 		
 		if($stmt->execute()){
+			$stmt->close();
+			$conn->close();
 			echo "<script>alert('Success write!');</script>";
 			echo "<script>location.href='index.php?page=qna';</script>";
 		}

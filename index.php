@@ -10,18 +10,11 @@
 <body>
 	<?php session_start(); ?>
 	
-	<img src="image/bank_main.jpg" alt="main" width="1200" height="200">
+	<img src="image/bank_main.jpg" alt="main" width="1250" height="200">
 
 	<nav id="topMenu">
 		<ul>
 			<li><a class="menuLink" href="?page=index"><b>Home</b></a></li>
-			<li><a class="menuLink" href="?page=transfer">Transfer</a></li>
-			<li><a class="menuLink" href="?page=deposit">Deposit</a></li>
-			<li><a class="menuLink" href="?page=opening">Opening</a></li>
-			<li><a class="menuLink" href="?page=termination">Termination</a></li>
-			<li><a class="menuLink" href="?page=qna">QnA</a></li>
-		</ul>
-		<ul>
 			<?php //세션이 존재한다면 로그아웃으로 표시, 존재하지 않는다면 로그인으로 표시
 			if(isset($_SESSION['user_id']) AND isset($_SESSION['user_name']))
 			{ 
@@ -32,9 +25,18 @@
 			}
 			?>
 			<li><a class="menuLink" href="?page=signup">Sign up</a></li>
-			<li><a class="menuLink" href="?page=lookup">Lookup</a></li>
-			<li><a class="menuLink" href="?page=insurance">Insurance</a></li>
 			<li><a class="menuLink" href="?page=mypage">My page</a></li>
+			<li><a class="menuLink" href="?page=qna">QnA</a></li>
+			<li><a class="menuLink" href="?page=chat">Chat</a></li>
+		</ul>
+		<ul>
+			<li><a class="menuLink" href="?page=lookup">Lookup</a></li>
+			<li><a class="menuLink" href="?page=deposit">Deposit</a></li>
+			<li><a class="menuLink" href="?page=transfer">Transfer</a></li>
+			<li><a class="menuLink" href="?page=opening">Opening</a></li>
+			<li><a class="menuLink" href="?page=termination">Termination</a></li>
+			<li><a class="menuLink" href="?page=insurance">Insurance</a></li>
+			
 		</ul>
 	</nav>
 	
@@ -96,6 +98,20 @@
 		}
 		if($_GET['page']=="write"){
 			include 'board_write.html';
+		}
+		if($_GET['page']=="board_lookup"){
+			if(isset($_GET['no']))
+			{
+				include 'board_lookup.html';
+			}else
+			{
+				echo "<script>alert('Wrong Access.');</script>";
+				echo "<script>location.href='index.php'</script>";
+			}
+		}
+		if($_GET['page']=="chat"){
+			
+			include 'chat.html';
 		}
 		?>
 	</nav>
