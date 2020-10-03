@@ -26,6 +26,24 @@ div.downdesc{
 	color: Lightgray;
 }
 
+
+
+.admin_table_qna th:nth-child(2){ width: 550px; text-align: center}
+.admin_table_qna td:nth-child(1){ width: 70px; }
+.admin_table_qna td:nth-child(2){ width: 550px; }
+.admin_table_qna td:nth-child(3){ width: 100px; }
+.admin_table_qna td:nth-child(4){ width: 100px; }
+.admin_table_qna td:nth-child(5){ width: 100px; }
+.admin_table_qna td:nth-child(6){ width: 100px; }
+.admin_table_qna td:nth-child(7){ width: 100px; }
+
+.admin_table_qna table{
+	text-align: center;
+	border: 1px solid #d6d6d6;
+	border-collapse: collapse;
+	width: 65%; 
+}
+
 .admin_table_member table{
 	text-align: center;
 	border: 1px solid #d6d6d6;

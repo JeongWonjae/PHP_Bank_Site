@@ -8,11 +8,17 @@
 	<body>
 		<?php
 			session_start();
+			if($_SESSION['user_id']!="admin")
+			{
+				echo "<script>alert('Your not admin. Signin to admin account.');</script>";
+				echo "<script>location.href='../index.php?page=index'</script>";
+			}
 		?>
 		<nav id="topMenu">
 			<ul>
 				<li><a class="menuLink" href="?page=member">Member</a></li>
 				<li><a class="menuLink" href="?page=log">Log</a></li>
+				<li><a class="menuLink" href="?page=qna">QnA</a></li>
 				<li><a class="menuLink" href="?page=logout">Logout</a></li>
 			</ul>
 		</nav>
@@ -26,6 +32,16 @@
 				}
 				if($_GET['page']=="log"){
 					include 'information_logs.php';
+				}
+				if($_GET['page']=="qna"){
+					include 'information_qna.php';
+				}
+				if(isset($_GET['no']))
+				{
+					if($_GET['page']=="answer")
+					{
+						include "answer_qna.php";
+					}
 				}
 				if($_GET['page']=="logout"){
 					include 'admin_logout.php';

@@ -34,8 +34,16 @@
 					$result=$stmt->get_result();
 					while($data=$result->fetch_assoc())
 					{
-					
+						echo "<script>var password=prompt('Enter password.','');</script>";
+						echo "<script>alert(password);</script>"
 				?>
+				<script>
+					if(password!=document.getElementById().value())
+					{
+
+					}
+				</script>	
+			
 				<label class="title" for="title">No. </label>
 				<?php echo "<input type='text' name='no' id='no' size='12' value='".$data['No']."' readonly>"; ?>
 			
@@ -58,7 +66,40 @@
 				<br><br>
 				<p><input type='button' class='b_button' value='Back' onclick="location.href='index.php?page=qna'"></p>
 				<?php } ?>
-		</fieldset>
+		</fieldset><br># Admin answer the following.<br>
+				<?php
+					include 'config/database.php';
+					$conn = mysqli_connect( $host, $user, $pw, $dbName);
+
+					if(!$conn){
+						echo "<script>alert('DB Server Connect Fail');</script>";
+						echo "<script>locastion.href='index.php?page=inquery'</script>";
+					}
+
+					$stmt=$conn->stmt_init();
+					$stmt=$conn->prepare("select * from board_reply where No=? order by Date,Time ASC");
+					$stmt->bind_param('s', $_GET['no']);
+					$stmt->execute();
+					$result=$stmt->get_result();
+					$number=1;
+					while($data=$result->fetch_assoc())
+					{
+				?>
+						<fieldset>
+							<label class="title" for="no_r">No. </label>
+							<?php echo "<input type='text' name='no_r' id='no_r' size='12' value='".$data['No']."-".$number."' readonly>"; ?>
+
+							<label class="title" for="author_r">Author : </label>
+							<?php echo "<input type='text' name='author_r' id='author_r' size='12' value='Admin' readonly>"; ?>
+
+							<label class="title" for="content_r">Content : </label>
+							<?php echo "<textarea cols='12' rows='10' name='content_r' id='content_r' readonly>".$data['Content']."</textarea>"; ?>	
+
+							<label class="title" for="date_r">Date : </label>
+							<?php echo "<input type='text' name='date_r' id='date_r' size='12' value='".$data['Date']." ".$data['Time']."' readonly>"; ?>
+						</fieldset><br>
+						<?php $number+=1; ?>
+					<?php } ?>
 	</BODY>
 </HTML>
 
