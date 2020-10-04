@@ -1,3 +1,4 @@
+<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js'></script>
 <HTML>
 	<?php
 	if(!isset($_SESSION['user_id']) OR !isset($_SESSION['user_name']))
@@ -9,6 +10,7 @@
 	
 	<TITLE>PHP Bank - Board lookup</TITLE>
 	<HEAD>
+	
 		<li>
 		Menu : Post Lookup<br>
 		</li>
@@ -35,15 +37,20 @@
 					while($data=$result->fetch_assoc())
 					{
 						echo "<script>var password=prompt('Enter password.','');</script>";
-						echo "<script>alert(password);</script>"
 				?>
-				<script>
-					if(password!=document.getElementById().value())
-					{
-
-					}
-				</script>	
 			
+				<?php echo "<input type='hidden' id='password' value='".$data['PW']."'>"; ?>
+			
+				<script>
+				var realPassword=document.getElementById('password').value;
+				var hash = CryptoJS.SHA1(password);
+   				password = CryptoJS.enc.Hex.stringify(hash);
+				if(password!=realPassword){
+					alert("Wrong password.");
+					window.location.href='index.php?page=qna';
+				}
+				</script>
+				
 				<label class="title" for="title">No. </label>
 				<?php echo "<input type='text' name='no' id='no' size='12' value='".$data['No']."' readonly>"; ?>
 			

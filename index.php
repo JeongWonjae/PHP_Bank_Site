@@ -76,7 +76,7 @@
 			include 'logout.php';
 		}
 		if($_GET['page']=="index"){
-			echo "<script>location.href='index.php'></script>";
+			include 'introduce.html';
 		}
 		if($_GET['page']=="opening"){
 			include 'opening.html';
